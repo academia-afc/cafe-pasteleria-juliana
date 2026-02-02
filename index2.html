@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juliana Café & Pastelería | Estd 2019</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colores extraídos de la carta */
+            --brand-rose: #D8B4A6; /* El tono rosado del menú */
+            --brand-brown: #4A3B32; /* El color de las letras oscuras */
+            --brand-cream: #F9F7F2; /* Fondo suave */
+            --white: #ffffff;
+            --accent-gold: #C5A065;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Raleway', sans-serif; 
+            background-color: var(--brand-cream); 
+            color: var(--brand-brown); 
+            line-height: 1.6; 
+            padding-bottom: 80px; 
+        }
+        
+        .container { width: 90%; max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* HEADER */
+        header { 
+            background: var(--white); 
+            padding: 15px 0; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05); 
+            position: sticky; top: 0; z-index: 100; text-align: center; 
+            border-bottom: 3px solid var(--brand-rose);
+        }
+        
+        /* LOGO TIPO SELLO */
+        .logo-stamp {
+            border: 2px solid var(--brand-brown);
+            padding: 5px 20px;
+            display: inline-block;
+            border-radius: 50px;
+            color: var(--brand-brown);
+        }
+        .logo-text { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .estd { font-size: 0.7rem; display: block; font-family: 'Raleway', sans-serif; letter-spacing: 3px; }
+
+        /* HERO SECTION */
+        .hero { 
+            text-align: center; 
+            padding: 40px 0 60px; 
+            background: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+        
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--brand-brown); font-style: italic; }
+        .hero p { font-size: 1.1rem; color: #777; margin-bottom: 30px; }
+
+        /* VIDEO */
+        .video-container {
+            width: 100%; max-width: 400px; height: 500px;
+            margin: 0 auto 30px;
+            background-color: #ddd; border-radius: 150px 150px 20px 20px; /* Forma de arco ventana */
+            overflow: hidden; border: 5px solid var(--white);
+            box-shadow: 0 10px 30px rgba(74, 59, 50, 0.15);
+            position: relative;
+        }
+        video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* SECCIONES DEL MENÚ */
+        .menu-section { padding: 40px 0; }
+        .section-title { 
+            text-align: center; margin-bottom: 30px; position: relative; 
+            color: var(--brand-brown); font-size: 1.8rem;
+        }
+        .section-title::after {
+            content: '❧'; display: block; color: var(--brand-rose); font-size: 1.5rem; margin-top: 5px;
+        }
+
+        .grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .menu-card {
+            background: var(--white); padding: 25px; border-radius: 10px;
+            border: 1px solid var(--brand-rose);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-3px); }
+        .menu-card h3 { font-size: 1.2rem; margin-bottom: 5px; color: var(--brand-brown); }
+        .menu-card p { font-size: 0.9rem; color: #666; margin-bottom: 10px; }
+        .price { font-weight: 700; color: var(--brand-brown); font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+
+        /* DESTACADO JUGOS (NUEVO) */
+        .juice-banner {
+            background: linear-gradient(135deg, #fff0ea 0%, #ffd1b9 100%);
+            padding: 40px; border-radius: 20px; text-align: center; margin: 40px 0;
+            border: 2px dashed var(--brand-rose);
+        }
+        .juice-title { font-size: 1.8rem; color: #D86C4A; margin-bottom: 10px; }
+
+        /* BARRA FLOTANTE */
+        .floating-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: var(--white); padding: 15px 20px;
+            border-top: 2px solid var(--brand-rose);
+            z-index: 999; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+        }
+        .btn-whatsapp {
+            background-color: var(--brand-brown); color: white; 
+            padding: 10px 25px; border-radius: 30px; font-weight: bold; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .video-container { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo-stamp">
+                <span class="logo-text">JULIANA</span>
+                <span class="estd">ESTD 2019</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Café & Pastelería Artesanal</h1>
+            <p>El aroma del pan de masa madre y el café recién hecho.</p>
+            
+            <div class="video-container">
+                <video src="video.mp4" autoplay muted loop playsinline poster="poster.jpg">
+                    <div style="display:flex; height:100%; align-items:center; justify-content:center; color:#999;">
+                        Video del Local
+                    </div>
+                </video>
+            </div>
+
+            <a href="#menu" style="color: var(--brand-brown); font-weight: bold; border-bottom: 1px solid var(--brand-brown);">VER NUESTRA CARTA 👇</a>
+        </div>
+    </section>
+
+    <div class="container" id="menu">
+        
+        <div class="menu-section">
+            <h2 class="section-title">Panadería de Masa Madre</h2>
+            <div class="grid-menu">
+                <div class="menu-card">
+                    <h3>🍞 Pan de Masa Madre</h3>
+                    <p>Base de masa madre, naranjas confitadas y chips de chocolate al 51% (950gr).</p>
+                    <div class="price">$14.000</div>
+                </div>
+                <div class="menu-card">
+                    <h3>🧀 Pan de Queso</h3>
+                    <p>Base de masa madre con queso paipa (950gr).</p>
+                    <div class="price">$16.000</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2 class="section-title">Bizcochería & Dulce</h2>
+            <div class="grid-menu">
+                <div class="menu-card">
+                    <h3>🍰 Tortas Artesanales</h3>
+                    <p>Zanahoria, Red Velvet, Matcha y Frambuesas, Marmo y Baileys.</p>
+                    <div class="price">$7.000 <small>/ Porción</small></div>
+                </div>
+                <div class="menu-card">
+                    <h3>🍪 Galletas</h3>
+                    <p>Chocolate, Frutos Secos o Naranja Chocolate (100gr).</p>
+                    <div class="price">$6.000</div>
+                </div>
+                <div class="menu-card">
+                    <h3>🥣 Granola Personal</h3>
+                    <p>Frutos secos, ghee y miel (60gr). Copa con yogurt y fruta disponible.</p>
+                    <div class="price">$4.000</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2 class="section-title">Barra de Café</h2>
+            <div class="grid-menu">
+                <div class="menu-card">
+                    <h3>☕ Clásicos</h3>
+                    <p>Espresso, Americano, Tinto Campesino.</p>
+                    <div class="price">Desde $3.000</div>
+                </div>
+                <div class="menu-card">
+                    <h3>🥛 Con Leche</h3>
+                    <p>Cappuccino, Latte, Macchiato, Mocaccino.</p>
+                    <div class="price">Desde $5.000</div>
+                </div>
+                <div class="menu-card">
+                    <h3>🍵 Infusiones</h3>
+                    <p>Té Chai, Té de Frutas, Té Amarillo.</p>
+                    <div class="price">$7.000</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="juice-banner">
+            <h2 class="juice-title">🍊 Jugos Naturales & Frescos</h2>
+            <p>Preparados al instante con fruta seleccionada.</p>
+            <br>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <div style="background: white; padding: 10px 20px; border-radius: 10px; font-weight: bold; color: var(--brand-brown);">
+                    🥤 En Agua
+                </div>
+                <div style="background: white; padding: 10px 20px; border-radius: 10px; font-weight: bold; color: var(--brand-brown);">
+                    🥛 En Leche
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="floating-bar">
+        <div>
+            <span style="font-size: 0.8rem; display: block; color: #888;">DOMICILIOS & RESERVAS</span>
+            <strong style="color: var(--brand-brown);">Juliana Café</strong>
+        </div>
+        <a href="https://wa.me/573114957971?text=Hola%20Juliana%20Café,%20quisiera%20hacer%20un%20pedido." class="btn-whatsapp">
+            Hacer Pedido ➔
+        </a>
+    </div>
+
+</body>
+</html>
