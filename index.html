@@ -19,64 +19,88 @@
             background-color: var(--crema-fondo);
             color: var(--cafe-oscuro);
             margin: 0;
-            line-height: 1.6;
-            padding-bottom: 80px; /* Espacio para el botón flotante */
+            padding-top: 180px; /* Espacio inicial para el header grande */
+            transition: padding-top 0.3s ease;
         }
 
+        /* HEADER CON EFECTO SCROLL */
         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--crema-fondo);
             text-align: center;
-            padding: 40px 20px 20px;
+            padding: 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0);
         }
 
-        .logo-placeholder {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 0;
-            color: var(--cafe-oscuro);
+        /* Cuando el usuario hace scroll */
+        header.shrink {
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-container img {
+            width: 150px; /* Tamaño inicial 4K */
+            height: auto;
+            transition: width 0.3s ease;
+        }
+
+        header.shrink .logo-container img {
+            width: 80px; /* Tamaño al encogerse */
         }
 
         .subtitle {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 3px;
             color: var(--rosa-viejo);
-            margin-top: -5px;
+            margin: 5px 0;
             font-weight: bold;
             text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        header.shrink .subtitle, header.shrink .divider {
+            opacity: 0;
+            height: 0;
+            margin: 0;
         }
 
         .divider {
-            width: 50px;
+            width: 40px;
             height: 2px;
             background-color: var(--rosa-viejo);
-            margin: 15px auto;
+            margin: 10px auto;
         }
 
+        /* CONTENIDO DEL MENÚ */
         main {
             max-width: 600px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
 
         .cat-title {
             font-family: 'Playfair Display', serif;
             text-align: center;
             background-color: #f4ece4;
-            padding: 8px;
-            font-size: 1.3rem;
-            margin: 35px 0 20px;
+            padding: 10px;
+            font-size: 1.2rem;
+            margin: 30px 0 15px;
             border-top: 1px solid var(--borde-menu);
             border-bottom: 1px solid var(--borde-menu);
             text-transform: uppercase;
         }
 
         .menu-item {
-            margin-bottom: 18px;
-            cursor: pointer;
-            transition: opacity 0.2s;
+            margin-bottom: 15px;
+            padding: 5px;
+            border-radius: 8px;
+            transition: background 0.2s;
         }
-
-        .menu-item:active { opacity: 0.6; }
 
         .item-header {
             display: flex;
@@ -84,31 +108,12 @@
             align-items: baseline;
         }
 
-        .item-name {
-            font-weight: bold;
-            font-size: 1rem;
-            text-transform: uppercase;
-        }
+        .item-name { font-weight: bold; font-size: 0.95rem; text-transform: uppercase; }
+        .item-dots { flex-grow: 1; border-bottom: 1px dotted var(--rosa-viejo); margin: 0 8px; }
+        .item-price { font-weight: bold; color: var(--rosa-viejo); }
+        .item-desc { font-size: 0.8rem; font-style: italic; color: #7d6b63; margin: 2px 0; }
 
-        .item-dots {
-            flex-grow: 1;
-            border-bottom: 1px dotted var(--rosa-viejo);
-            margin: 0 8px;
-        }
-
-        .item-price {
-            font-weight: bold;
-            color: var(--rosa-viejo);
-        }
-
-        .item-desc {
-            font-size: 0.85rem;
-            font-style: italic;
-            margin: 3px 0 0;
-            color: #7d6b63;
-        }
-
-        /* Botón de WhatsApp Flotante */
+        /* BOTÓN WHATSAPP */
         .btn-whatsapp {
             position: fixed;
             bottom: 20px;
@@ -120,36 +125,43 @@
             text-decoration: none;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1000;
+            z-index: 2000;
             font-size: 0.9rem;
         }
 
-        #loading { text-align: center; margin-top: 50px; font-style: italic; }
+        #loading { text-align: center; margin-top: 50px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-placeholder">JULIANA</div>
+    <header id="main-header">
+        <div class="logo-container">
+            <img src="logo_juliana.png" alt="Juliana Café">
+        </div>
         <p class="subtitle">CAFÉ & PASTELERÍA</p>
         <div class="divider"></div>
     </header>
 
     <main id="menu-container">
-        <div id="loading">Consultando nuestra cocina...</div>
+        <div id="loading">Cargando...</div>
     </main>
 
-    <a href="https://wa.me/573142611786?text=Hola! Me gustaría hacer un pedido del menú." 
-       class="btn-whatsapp" target="_blank">
-        <span>Pedir por WhatsApp</span>
+    <a href="https://wa.me/573142611786" class="btn-whatsapp" target="_blank">
+        Pedir por WhatsApp
     </a>
 
     <script>
-        // REEMPLAZA ESTA URL CON TU LINK DE GOOGLE APPS SCRIPT
-        const URL_API = "https://script.google.com/macros/s/AKfycbxfJefNlTYOWNCGSZeqzWGcBELOdU-iv2pDTFWFJl-HDvgshNHJ-GULRX-9dlyJC1A/exec";
+        // Efecto Scroll
+        window.onscroll = function() {
+            const header = document.getElementById("main-header");
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.classList.add("shrink");
+            } else {
+                header.classList.remove("shrink");
+            }
+        };
+
+        const URL_API = "TU_URL_DE_APPS_SCRIPT_AQUI";
 
         async function cargarMenu() {
             try {
@@ -158,22 +170,16 @@
                 const contenedor = document.getElementById('menu-container');
                 contenedor.innerHTML = "";
 
-                // Obtenemos categorías únicas
                 const categorias = [...new Set(datos.map(item => item.categoria))];
 
                 categorias.forEach(cat => {
                     const seccion = document.createElement('section');
                     seccion.innerHTML = `<h2 class="cat-title">${cat}</h2>`;
-                    
                     const list = document.createElement('div');
-                    
-                    // Filtrar platos por categoría y disponibilidad
+
                     datos.filter(p => p.categoria === cat && p.disponible).forEach(plato => {
-                        // Link personalizado para pedir ese plato específico por WA
-                        const waLink = `https://wa.me/573142611786?text=Hola! Me gustaría pedir: ${plato.nombre}`;
-                        
                         list.innerHTML += `
-                            <div class="menu-item" onclick="window.open('${waLink}', '_blank')">
+                            <div class="menu-item">
                                 <div class="item-header">
                                     <span class="item-name">${plato.nombre}</span>
                                     <span class="item-dots"></span>
@@ -187,11 +193,9 @@
                     contenedor.appendChild(seccion);
                 });
             } catch (error) {
-                document.getElementById('loading').innerText = "Hubo un error al conectar con el menú.";
-                console.error(error);
+                document.getElementById('loading').innerText = "Error de conexión.";
             }
         }
-
         cargarMenu();
     </script>
 </body>
